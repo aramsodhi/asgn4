@@ -8,37 +8,37 @@
 #unsigned int rshiftnums(unsigned int, int);
 
 addnums:
-add a0, a0, a1
-ret 
+    add a0, a0, a1
+    ret 
 
 subnums:
-sub a0, a0, a1
-ret
+    sub a0, a0, a1
+    ret
 
 multnums:
-mul a0, a0, a1
-ret
+    mul a0, a0, a1
+    ret
 
 divnums:
-div a0, a0, a1
-ret
+    div a0, a0, a1
+    ret
 
 andnums:
-and  a0, a0, a1
-ret
+    and  a0, a0, a1
+    ret
 
 ornums:
-or  a0, a0, a1
-ret
+    or  a0, a0, a1
+    ret
 
 xornums:
-xor a0, a0, a1
-ret
+    xor a0, a0, a1
+    ret
 
 lshiftnums:
-slli a0, a0, a1
-ret
+    slli a0, a0, a1
+    ret
 
 rshiftnums:
-srli a0, a0, a1
-ret
+    srli a0, a0, a1
+    ret

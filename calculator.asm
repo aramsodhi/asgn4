@@ -1,4 +1,3 @@
-
 welcome:   .string "Welcome to the Calculator program."
 operand:   .string "Operations - 1:add 2:subtract 3:multiply 4:divide 5:and 6:or 7:xor 8:lshift 9:rshift \n"
 num_of_ops: .string "Number of operations performed: "
