@@ -9,11 +9,11 @@ int main(void) {
     int operand_1;
     int operand_2;
 
-    /* int to store the result of a calculation */
-    int result;
-
     /* int to store which operation the user inputs */
     int operation;
+
+    /* int to store the result of a calculation */
+    int result;
 
     /* char to store user input when asked to continue/exit */
     char continue_or_exit;

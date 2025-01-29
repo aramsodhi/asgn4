@@ -1,3 +1,4 @@
+.globl addnums, subnums, multnums, divnums, andnums, ornums, xornums, lshiftnums, rshiftnums
 #int addnums(int, int);
 #int multnums(int, int);
 #int divnums(int, int);
@@ -36,9 +37,9 @@ xornums:
     ret
 
 lshiftnums:
-    slli a0, a0, a1
+    sll a0, a0, a1
     ret
 
 rshiftnums:
-    srli a0, a0, a1
+    srl a0, a0, a1
     ret
