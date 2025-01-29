@@ -5,17 +5,16 @@
 # use s1 for operand 1
 # use s2 for operand 2
 # use s3 for selected operation
-# use s4 for 'n' character
+# use s4 for result of calculation
+# use s5 for input to continue or exit
+# use s6 for 'n' character
+# use s7 for integer corresponding to operation being checked
 
-# use t1 for result of calculation
-# use t2 for input to continue or exit
-# use t3 for integer corresponding to operation being checked	
-	
 	.globl main
 	.text
 main:
 	# load 'n' character into s4 register to check while condition
-	li s4, 'n'
+	li s6, 'n'
 
 	# print welcome message
 	la a0, welcome_message
@@ -68,101 +67,101 @@ loop:
 # check if operation is addition
 if_addition:
 	# check subtraction if not addition
-	li t3, 1
-	bne s3, t3, if_subtraction
+	li s7, 1
+	bne s3, s7, if_subtraction
 			
-	# call addition subroutine and store result in t1 register
+	# call addition subroutine and store result in s4 register
 	jal addnums
-	mv t1, a0
+	mv s4, a0
 			
 	# jump to end
 	b print_result
 			
 if_subtraction:
 	# check multiplication if not subtraction
-	li t3, 2
-	bne s3, t3, if_multiplication
+	li s7, 2
+	bne s3, s7, if_multiplication
 			
-	# call subtraction subroutine and store result in t1 register
+	# call subtraction subroutine and store result in s4 register
 	jal subnums
-	mv t1, a0
+	mv s4, a0
 			
 	b print_result
 			
 if_multiplication:
 	# check division if not multiplication
-	li t3, 3
-	bne s3, t3, if_division
+	li s7, 3
+	bne s3, s7, if_division
 			
-	# call multiplication subroutine and store result in t1 register
+	# call multiplication subroutine and store result in s4 register
 	jal multnums
-	mv t1, a0
+	mv s4, a0
 			
 	b print_result
 		
 if_division:
 	# check and if not division
-	li t3, 4
-	bne s3, t3, if_and
+	li s7, 4
+	bne s3, s7, if_and
 			
-	# call division subroutine and store result in t1 register
+	# call division subroutine and store result in s4 register
 	jal divnums
-	mv t1, a0
+	mv s4, a0
 			
 	b print_result
 			
 if_and:
 	# check or if not and
-	li t3, 5
-	bne s3, t3, if_or
+	li s7, 5
+	bne s3, s7, if_or
 			
-	# call and subroutine and store result in t1 register
+	# call and subroutine and store result in s4 register
 	jal andnums
-	mv t1, a0
+	mv s4, a0
 			
 	b print_result
 			
 if_or:
 	# check xor if not or
-	li t3, 6
-	bne s3, t3, if_xor
+	li s7, 6
+	bne s3, s7, if_xor
 			
-	# call or subroutine and store result in t1 register
+	# call or subroutine and store result in s4 register
 	jal ornums
-	mv t1, a0
+	mv s4, a0
 			
 	b print_result
 			
 if_xor:
 	# check lshift if not xor
-	li t3, 7
-	bne s3, t3, if_lshift
+	li s7, 7
+	bne s3, s7, if_lshift
 			
-	# call xor subroutine and store result in t1 register
+	# call xor subroutine and store result in s4 register
 	jal xornums
-	mv t1, a0
+	mv s4, a0
 			
 	b print_result
 			
 if_lshift:
 	# check rshift if not lshift
-	li t3, 8
-	bne s3, t3, if_rshift
+	li s7, 8
+	bne s3, s7, if_rshift
 			
-	# call left shift subroutine and store result in t1 register
+	# call left shift subroutine and store result in s4 register
 	jal lshiftnums
-	mv t1, a0
+	mv s4, a0
 			
 	b print_result
 			
 if_rshift:
 	# invalid operation if not rshift
-	li t3, 9
-	bne s3, t3, invalid_operation
+	li s7, 9
+	bne s3, s7, invalid_operation
 			
-	# call right shift subroutine and store result in t1 register
+	# call right shift subroutine and store result in s4 register
 	jal rshiftnums
-	mv t1, a0
+	mv s4, a0
 			
 	b print_result
 			
@@ -177,8 +176,10 @@ print_result:
 	# print result of operation
 	la a0, result_message
 	jal printstring
-	mv a0, t1
+	mv a0, s4
 	jal printint
+
+	b if_end
 			
 if_end:
 	# increment number of operations by 1
@@ -190,13 +191,13 @@ if_end:
 			
 	# read character from console and store result in t2
 	jal readchar
-	mv t2, a0
+	mv s5, a0
 			
 	# print newline character
 	li a0, '\n'
 	jal printchar
 			
-	bne t2, s4, loop
+	bne s5, s6, loop
 			
 exit_program:
 	# print total number of operations performed
