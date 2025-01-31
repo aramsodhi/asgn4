@@ -8,7 +8,8 @@
 # use s4 for result of calculation
 # use s5 for input to continue or exit
 # use s6 for 'n' character
-# use s7 for integer corresponding to operation being checked
+
+# use t1 for integer corresponding to operation being checked
 
 	.globl main
 	.text
@@ -67,8 +68,8 @@ loop:
 # check if operation is addition
 if_addition:
 	# check subtraction if not addition
-	li s7, 1
-	bne s3, s7, if_subtraction
+	li t1, 1
+	bne s3, t1, if_subtraction
 			
 	# call addition subroutine and store result in s4 register
 	jal addnums
@@ -79,8 +80,8 @@ if_addition:
 			
 if_subtraction:
 	# check multiplication if not subtraction
-	li s7, 2
-	bne s3, s7, if_multiplication
+	li t1, 2
+	bne s3, t1, if_multiplication
 			
 	# call subtraction subroutine and store result in s4 register
 	jal subnums
@@ -90,8 +91,8 @@ if_subtraction:
 			
 if_multiplication:
 	# check division if not multiplication
-	li s7, 3
-	bne s3, s7, if_division
+	li t1, 3
+	bne s3, t1, if_division
 			
 	# call multiplication subroutine and store result in s4 register
 	jal multnums
@@ -101,8 +102,8 @@ if_multiplication:
 		
 if_division:
 	# check and if not division
-	li s7, 4
-	bne s3, s7, if_and
+	li t1, 4
+	bne s3, t1, if_and
 			
 	# call division subroutine and store result in s4 register
 	jal divnums
@@ -112,8 +113,8 @@ if_division:
 			
 if_and:
 	# check or if not and
-	li s7, 5
-	bne s3, s7, if_or
+	li t1, 5
+	bne s3, t1, if_or
 			
 	# call and subroutine and store result in s4 register
 	jal andnums
@@ -123,8 +124,8 @@ if_and:
 			
 if_or:
 	# check xor if not or
-	li s7, 6
-	bne s3, s7, if_xor
+	li t1, 6
+	bne s3, t1, if_xor
 			
 	# call or subroutine and store result in s4 register
 	jal ornums
@@ -134,8 +135,8 @@ if_or:
 			
 if_xor:
 	# check lshift if not xor
-	li s7, 7
-	bne s3, s7, if_lshift
+	li t1, 7
+	bne s3, t1, if_lshift
 			
 	# call xor subroutine and store result in s4 register
 	jal xornums
@@ -145,8 +146,8 @@ if_xor:
 			
 if_lshift:
 	# check rshift if not lshift
-	li s7, 8
-	bne s3, s7, if_rshift
+	li t1, 8
+	bne s3, t1, if_rshift
 			
 	# call left shift subroutine and store result in s4 register
 	jal lshiftnums
@@ -156,8 +157,8 @@ if_lshift:
 			
 if_rshift:
 	# invalid operation if not rshift
-	li s7, 9
-	bne s3, s7, invalid_operation
+	li t1, 9
+	bne s3, t1, invalid_operation
 			
 	# call right shift subroutine and store result in s4 register
 	jal rshiftnums
@@ -189,7 +190,7 @@ if_end:
 	la a0, continue_prompt
 	jal printstring
 			
-	# read character from console and store result in t2
+	# read character from console and store result in s5
 	jal readchar
 	mv s5, a0
 			
@@ -211,14 +212,14 @@ exit_program:
 	jal printstring
 		
 	# execute exit subroutine
-	jal exit
+	jal exit0
 
 .data
 	welcome_message:   .string "Welcome to the Calculator program.\n"
 	supported_operations_message:   .string "Operations - 1:add 2:subtract 3:multiply 4:divide 5:and 6:or 7:xor 8:lshift 9:rshift \n"
 	number_of_operations_message: .string "\nNumber of operations performed: "
-	enter_first_number_prompt:  .string "\nEnter number: "
-	enter_second_number_prompt: .string "Enter second number: "
+	enter_first_number_prompt:  .string "\nEnter a number: "
+	enter_second_number_prompt: .string "Enter a second number: "
 	select_operation_prompt:   .string "Select operation: "
 	result_message:      .string "Result: "
 	invalid_operation_message: .string "Result: Invalid Operation"

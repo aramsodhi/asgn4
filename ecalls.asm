@@ -30,7 +30,7 @@ readint:
 	ecall
 	ret
 	
-exit:
+exit0:
 	li a7, 10
 	ecall
 	ret
