@@ -1,4 +1,4 @@
-.globl printint, printstring, printchar, readchar, readint, exit
+.globl printint, printstring, printchar, readchar, readint, exit0
 
 # assume int to print is in register a0
 printint:

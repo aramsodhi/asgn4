@@ -36,11 +36,11 @@ int main(void) {
         printf("\nNumbers of operations performed: %d", num_operations);
         
         /* prompt the user to enter a number and read input */
-        printf("\nEnter a number: ");
+        printf("\nEnter number: ");
         scanf(" %d", &operand_1);
 
         /* prompt the user to enter a second number and read input */
-        printf("Enter a second number: ");
+        printf("Enter second number: ");
         scanf(" %d", &operand_2);
 
         /* prompt the user to select operation and read input */
