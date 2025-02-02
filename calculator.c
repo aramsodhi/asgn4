@@ -33,7 +33,7 @@ int main(void) {
         invalid_operation = 0;
 
         /* print running total of operations performed */
-        printf("\nNumbers of operations performed: %d", num_operations);
+        printf("\nNumber of operations performed: %d", num_operations);
         
         /* prompt the user to enter a number and read input */
         printf("\nEnter number: ");
